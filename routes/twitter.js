@@ -18,8 +18,15 @@ router.get("/tweets/:username", async (req, res) => {
 
     res.json(tweetsRes.data);
   } catch (err) {
-    console.error(err.response?.data || err.message);
-    res.status(500).json({ error: "Failed to fetch tweets" });
+    console.error("Twitter API Error:", err?.response?.data || err.message);
+    res.status(500).json({
+      error: "Failed to fetch tweets",
+      details: err?.response?.data || err.message,
+    });
+  }
+
+  if (!userRes.data?.data?.id) {
+    return res.status(404).json({ error: "User not found" });
   }
 });
 

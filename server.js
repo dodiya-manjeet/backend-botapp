@@ -1,4 +1,3 @@
-// backend/server.js
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -10,9 +9,8 @@ app.use(express.json());
 const twitterRoutes = require("./routes/twitter");
 app.use("/api", twitterRoutes);
 
-// ✅ Root route
 app.get("/", (req, res) => {
-  res.send("🚀 Infinity Bot Backend is running");
+  res.send(" Infinity Bot Backend is running");
 });
 
 const PORT = process.env.PORT || 3000;
